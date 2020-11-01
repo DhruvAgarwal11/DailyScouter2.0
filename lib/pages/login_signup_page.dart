@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:flutter_login_demo/pages/help.dart';
+
 
 class LoginSignupPage extends StatefulWidget {
   LoginSignupPage({this.auth, this.loginCallback});
@@ -18,8 +20,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   String _password;
   String _errorMessage;
 
-    bool _isLoginForm;
+  bool _isLoginForm;
   bool _isLoading;
+  bool _isResetPassword;
 
   // Check if form is valid before perform login or signup
   bool validateAndSave() {
@@ -37,17 +40,23 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       _errorMessage = "";
       _isLoading = true;
     });
+
     if (validateAndSave()) {
       String userId = "";
+
       try {
-        if (_isLoginForm) {
-          userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
+        if (_isResetPassword) {
+          _isResetPassword = false;
+          await widget.auth.resetPassword(_email);
+          _showResetPasswordEmailSentDialog();
         } else {
-          userId = await widget.auth.signUp(_email, _password);
-          //widget.auth.sendEmailVerification();
-          //_showVerifyEmailSentDialog();
-          print('Signed up user: $userId');
+          if (_isLoginForm) {
+            userId = await widget.auth.signIn(_email, _password);
+          } else {
+            userId = await widget.auth.signUp(_email, _password);
+            widget.auth.sendEmailVerification();
+            _showVerifyEmailSentDialog();
+          }
         }
         setState(() {
           _isLoading = false;
@@ -72,12 +81,21 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     _errorMessage = "";
     _isLoading = false;
     _isLoginForm = true;
+    _isResetPassword = false;
     super.initState();
   }
+
 
   void resetForm() {
     _formKey.currentState.reset();
     _errorMessage = "";
+  }
+
+  void toggleResetPassword() {
+    setState(() {
+      _isResetPassword = true;
+      validateAndSubmit();
+    });
   }
 
   void toggleFormMode() {
@@ -91,7 +109,8 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Flutter login demo'),
+          title: new Text('The Daily Scouter',textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),)
         ),
         body: Stack(
           children: <Widget>[
@@ -111,28 +130,51 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     );
   }
 
-//  void _showVerifyEmailSentDialog() {
-//    showDialog(
-//      context: context,
-//      builder: (BuildContext context) {
-//        // return object of type Dialog
-//        return AlertDialog(
-//          title: new Text("Verify your account"),
-//          content:
-//              new Text("Link to verify account has been sent to your email"),
-//          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Dismiss"),
-//              onPressed: () {
-//                toggleFormMode();
-//                Navigator.of(context).pop();
-//              },
-//            ),
-//          ],
-//        );
-//      },
-//    );
-//  }
+  void _showVerifyEmailSentDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Verify your account"),
+          content:
+              new Text("Link to verify account has been sent to your email"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Dismiss"),
+              onPressed: () {
+                toggleFormMode();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showResetPasswordEmailSentDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Reset Password"),
+          content:
+          new Text("Link to reset password has been sent to your email"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Dismiss"),
+              onPressed: () {
+                toggleFormMode();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Widget _showForm() {
     return new Container(
@@ -147,11 +189,14 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
               showPasswordInput(),
               showPrimaryButton(),
               showSecondaryButton(),
+              showThirdButton(),
               showErrorMessage(),
+              showHelpButton()
             ],
           ),
         ));
   }
+
 
   Widget showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
@@ -174,11 +219,11 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
     return new Hero(
       tag: 'hero',
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+        padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
-          radius: 48.0,
-          child: Image.asset('assets/flutter-icon.png'),
+          radius: 110.0,
+          child: Image.asset('assets/Daily_Scouter_logo.png'),
         ),
       ),
     );
@@ -208,6 +253,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
+        keyboardType: TextInputType.visiblePassword,
         obscureText: true,
         autofocus: false,
         decoration: new InputDecoration(
@@ -216,7 +262,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
               Icons.lock,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+        validator: (value) => ((value.isEmpty)&&(!_isResetPassword)) ? 'Password can\'t be empty' : null,
         onSaved: (value) => _password = value.trim(),
       ),
     );
@@ -225,9 +271,34 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget showSecondaryButton() {
     return new FlatButton(
         child: new Text(
-            _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
+            _isLoginForm ? 'Create an account' : 'Have a login? Sign in',
             style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
         onPressed: toggleFormMode);
+  }
+
+  Widget showThirdButton() {
+    return new FlatButton(
+        child: new Text(
+            'Reset Password',
+            style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
+        onPressed: toggleResetPassword);
+  }
+  Widget showHelpButton() {
+    return new FlatButton(
+        child: new Text(
+            'Help v2.0',
+            style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
+        onPressed: showHelpPage);
+  }
+  showHelpPage() async {
+    try {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HelpPage()),
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   Widget showPrimaryButton() {
@@ -247,3 +318,4 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         ));
   }
 }
+

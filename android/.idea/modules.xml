@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+5/android/firebase_auth.iml" filepath="$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+5/android/firebase_auth.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.0+9/android/firebase_core.iml" filepath="$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.0+9/android/firebase_core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-3.0.7/android/firebase_database.iml" filepath="$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-3.0.7/android/firebase_database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" group="android" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+9/android/android-firebase_auth.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+9/android/android-firebase_auth.iml" group="android/firebase_auth" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.5/android/android-firebase_core.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.5/android/android-firebase_core.iml" group="android/firebase_core" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_database-3.1.6/android/android-firebase_database.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_database-3.1.6/android/android-firebase_database.iml" group="android/firebase_database" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="android/app" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.6/android/cloud_firestore.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.6/android/cloud_firestore.iml" group="android/cloud_firestore" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/android/cloud_firestore_web.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/android/cloud_firestore_web.iml" group="android/cloud_firestore_web" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/android/firebase_core_web.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/android/firebase_core_web.iml" group="android/firebase_core_web" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.6/android/firebase_storage.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.6/android/firebase_storage.iml" group="android/firebase_storage" />
+      <module fileurl="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/printing-3.5.0/android/printing.iml" filepath="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/printing-3.5.0/android/printing.iml" group="android/printing" />
     </modules>
   </component>
 </project>

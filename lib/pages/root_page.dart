@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login_demo/pages/login_signup_page.dart';
 import 'package:flutter_login_demo/services/authentication.dart';
 import 'package:flutter_login_demo/pages/home_page.dart';
+import 'package:flutter_login_demo/pages/main_menu.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -21,6 +22,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.NOT_DETERMINED;
   String _userId = "";
+  String _email = "";
 
   @override
   void initState() {
@@ -29,6 +31,7 @@ class _RootPageState extends State<RootPage> {
       setState(() {
         if (user != null) {
           _userId = user?.uid;
+          _email=user?.email;
         }
         authStatus =
             user?.uid == null ? AuthStatus.NOT_LOGGED_IN : AuthStatus.LOGGED_IN;
@@ -40,6 +43,7 @@ class _RootPageState extends State<RootPage> {
     widget.auth.getCurrentUser().then((user) {
       setState(() {
         _userId = user.uid.toString();
+        _email=user?.email;
       });
     });
     setState(() {
@@ -59,8 +63,7 @@ class _RootPageState extends State<RootPage> {
       body: Container(
         alignment: Alignment.center,
         child: CircularProgressIndicator(),
-      ),
-    );
+      ));
   }
 
   @override
@@ -79,6 +82,7 @@ class _RootPageState extends State<RootPage> {
         if (_userId.length > 0 && _userId != null) {
           return new HomePage(
             userId: _userId,
+            email: _email,
             auth: widget.auth,
             logoutCallback: logoutCallback,
           );

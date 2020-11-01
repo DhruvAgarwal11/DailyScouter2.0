@@ -1,4 +1,4 @@
-package com.example.flutterlogindemo;
+package org.helloworldcoding.dailyscouter;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -1,134 +1,166 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_demo/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_login_demo/models/todo.dart';
+import 'package:flutter_login_demo/models/members.dart';
+import 'package:flutter_login_demo/pages/main_menu.dart';
 import 'dart:async';
+import 'dart:io';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.auth, this.userId, this.logoutCallback})
+  HomePage({Key key, this.auth, this.userId, this.email, this.logoutCallback})
       : super(key: key);
 
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
+  final String email;
 
   @override
-  State<StatefulWidget> createState() => new _HomePageState();
+  State<StatefulWidget> createState() => new _HomePageState(userId: userId, email: email,
+    auth: auth,
+    logoutCallback: logoutCallback);
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Todo> _todoList;
+  _HomePageState({this.auth, this.userId, this.email, this.logoutCallback});
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+  final String email;
+
+  List<Members> _membersList;
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final databaseReference = FirebaseDatabase.instance.reference();
 
-  final _textEditingController = TextEditingController();
-  StreamSubscription<Event> _onTodoAddedSubscription;
-  StreamSubscription<Event> _onTodoChangedSubscription;
+  StreamSubscription<Event> _onMembersAddedSubscription;
+  StreamSubscription<Event> _onMembersChangedSubscription;
 
-  Query _todoQuery;
+  Query _membersQuery;
 
-  //bool _isEmailVerified = false;
+  bool _isEmailVerified = false;
 
   @override
   void initState() {
     super.initState();
+    _checkEmailVerification();
 
-    //_checkEmailVerification();
+    _membersList = new List();
 
-    _todoList = new List();
-    _todoQuery = _database
+    _membersQuery = _database
         .reference()
-        .child("todo")
-        .orderByChild("userId")
-        .equalTo(widget.userId);
-    _onTodoAddedSubscription = _todoQuery.onChildAdded.listen(onEntryAdded);
-    _onTodoChangedSubscription =
-        _todoQuery.onChildChanged.listen(onEntryChanged);
+        .child("members");
+
+    _onMembersAddedSubscription =  _membersQuery.onChildAdded.listen(onEntryAdded);
+    _onMembersChangedSubscription = _membersQuery.onChildChanged.listen(onEntryChanged);
+ }
+
+  void _checkEmailVerification() async {
+    _isEmailVerified = await widget.auth.isEmailVerified();
+    if (!_isEmailVerified) {
+      _showVerifyEmailDialog();
+    }
+    else
+    {
+      bool foundExistingMember = false;
+
+      await _database.reference().child("members").once().then((DataSnapshot snapshot){
+          Map<dynamic, dynamic> values = snapshot.value;
+          if(values != null) {
+          values.forEach((key, values) {
+            if (values["email"] == email)
+              foundExistingMember = true;
+          });
+        }
+      });
+
+      if (!foundExistingMember)
+        {
+          addNewMembers();
+          int x=_membersList.length;
+        }
+     }
   }
 
-//  void _checkEmailVerification() async {
-//    _isEmailVerified = await widget.auth.isEmailVerified();
-//    if (!_isEmailVerified) {
-//      _showVerifyEmailDialog();
-//    }
-//  }
+  void _resentVerifyEmail(){
+    widget.auth.sendEmailVerification();
+    _showVerifyEmailSentDialog();
+  }
 
-//  void _resentVerifyEmail(){
-//    widget.auth.sendEmailVerification();
-//    _showVerifyEmailSentDialog();
-//  }
+  void _showVerifyEmailDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+         //return object of type Dialog
+        return AlertDialog(
+          title: new Text("Verify your account"),
+          content: new Text("Please verify account in the link sent to email"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Resend link"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _resentVerifyEmail();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Logout"),
+              onPressed: () {
+                signOut();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-//  void _showVerifyEmailDialog() {
-//    showDialog(
-//      context: context,
-//      builder: (BuildContext context) {
-//        // return object of type Dialog
-//        return AlertDialog(
-//          title: new Text("Verify your account"),
-//          content: new Text("Please verify account in the link sent to email"),
-//          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Resent link"),
-//              onPressed: () {
-//                Navigator.of(context).pop();
-//                _resentVerifyEmail();
-//              },
-//            ),
-//            new FlatButton(
-//              child: new Text("Dismiss"),
-//              onPressed: () {
-//                Navigator.of(context).pop();
-//              },
-//            ),
-//          ],
-//        );
-//      },
-//    );
-//  }
-
-//  void _showVerifyEmailSentDialog() {
-//    showDialog(
-//      context: context,
-//      builder: (BuildContext context) {
-//        // return object of type Dialog
-//        return AlertDialog(
-//          title: new Text("Verify your account"),
-//          content: new Text("Link to verify account has been sent to your email"),
-//          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Dismiss"),
-//              onPressed: () {
-//                Navigator.of(context).pop();
-//              },
-//            ),
-//          ],
-//        );
-//      },
-//    );
-//  }
+  void _showVerifyEmailSentDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+         //return object of type Dialog
+        return AlertDialog(
+          title: new Text("Verify your account"),
+          content: new Text("Link to verify account has been sent to your email"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Logout"),
+              onPressed: () {
+                signOut();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   void dispose() {
-    _onTodoAddedSubscription.cancel();
-    _onTodoChangedSubscription.cancel();
+    _onMembersAddedSubscription.cancel();
+    _onMembersChangedSubscription.cancel();
     super.dispose();
   }
 
   onEntryChanged(Event event) {
-    var oldEntry = _todoList.singleWhere((entry) {
+    var oldEntry = _membersList.singleWhere((entry) {
       return entry.key == event.snapshot.key;
     });
 
     setState(() {
-      _todoList[_todoList.indexOf(oldEntry)] =
-          Todo.fromSnapshot(event.snapshot);
+      _membersList[_membersList.indexOf(oldEntry)] =
+          Members.fromSnapshot(event.snapshot);
     });
   }
 
   onEntryAdded(Event event) {
     setState(() {
-      _todoList.add(Todo.fromSnapshot(event.snapshot));
+      _membersList.add(Members.fromSnapshot(event.snapshot));
     });
   }
 
@@ -141,129 +173,33 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  addNewTodo(String todoItem) {
-    if (todoItem.length > 0) {
-      Todo todo = new Todo(todoItem.toString(), widget.userId, false);
-      _database.reference().child("todo").push().set(todo.toJson());
+  showMainMenu() async {
+    try {
+      new MenuPage();
+    } catch (e) {
+      print(e);
     }
   }
 
-  updateTodo(Todo todo) {
-    //Toggle completed
-    todo.completed = !todo.completed;
-    if (todo != null) {
-      _database.reference().child("todo").child(todo.key).set(todo.toJson());
-    }
+  addNewMembers() {
+  //  if (membersItem.length > 0) {
+      Members members = new Members(widget.email, widget.userId,"","","","","","", "", "", false, false,false,false,false, null,"");
+      _database.reference().child("members").push().set(members.toJson());
+   // }
   }
 
-  deleteTodo(String todoId, int index) {
-    _database.reference().child("todo").child(todoId).remove().then((_) {
-      print("Delete $todoId successful");
+  deleteMembers(String membersId, int index) {
+    _database.reference().child("members").child(membersId).remove().then((_) {
       setState(() {
-        _todoList.removeAt(index);
+        _membersList.removeAt(index);
       });
     });
   }
 
-  showAddTodoDialog(BuildContext context) async {
-    _textEditingController.clear();
-    await showDialog<String>(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: new Row(
-              children: <Widget>[
-                new Expanded(
-                    child: new TextField(
-                  controller: _textEditingController,
-                  autofocus: true,
-                  decoration: new InputDecoration(
-                    labelText: 'Add new todo',
-                  ),
-                ))
-              ],
-            ),
-            actions: <Widget>[
-              new FlatButton(
-                  child: const Text('Cancel'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-              new FlatButton(
-                  child: const Text('Save'),
-                  onPressed: () {
-                    addNewTodo(_textEditingController.text.toString());
-                    Navigator.pop(context);
-                  })
-            ],
-          );
-        });
-  }
-
-  Widget showTodoList() {
-    if (_todoList.length > 0) {
-      return ListView.builder(
-          shrinkWrap: true,
-          itemCount: _todoList.length,
-          itemBuilder: (BuildContext context, int index) {
-            String todoId = _todoList[index].key;
-            String subject = _todoList[index].subject;
-            bool completed = _todoList[index].completed;
-            String userId = _todoList[index].userId;
-            return Dismissible(
-              key: Key(todoId),
-              background: Container(color: Colors.red),
-              onDismissed: (direction) async {
-                deleteTodo(todoId, index);
-              },
-              child: ListTile(
-                title: Text(
-                  subject,
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                trailing: IconButton(
-                    icon: (completed)
-                        ? Icon(
-                            Icons.done_outline,
-                            color: Colors.green,
-                            size: 20.0,
-                          )
-                        : Icon(Icons.done, color: Colors.grey, size: 20.0),
-                    onPressed: () {
-                      updateTodo(_todoList[index]);
-                    }),
-              ),
-            );
-          });
-    } else {
-      return Center(
-          child: Text(
-        "Welcome. Your list is empty",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 30.0),
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Flutter login demo'),
-          actions: <Widget>[
-            new FlatButton(
-                child: new Text('Logout',
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: signOut)
-          ],
-        ),
-        body: showTodoList(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showAddTodoDialog(context);
-          },
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ));
+    return new MenuPage(userId: userId,
+        auth: widget.auth,
+        logoutCallback: logoutCallback);
   }
 }

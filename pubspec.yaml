@@ -1,5 +1,6 @@
 name: flutter_login_demo
-description: A new Flutter project.
+description: Boy Scouts App
+version: 1.9.0
 
 dependencies:
   flutter:
@@ -8,14 +9,75 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.14.0+5
   firebase_database: ^3.0.7
+  auto_size_text: ^2.1.0
+
+  io: ^0.3.4
+  mailer:
+    git:
+      url: https://github.com/randomUserWhoLikesFlutter/mailer.git
+
+  firebase_helpers: ^0.1.8
+  url_launcher: ^5.5.0
+  table_calendar: ^2.2.3
+  flutter_svg: ^0.15.0
+  pdf: ^1.9.0
+  file_picker: ^2.0.11
+  intl: ^0.16.1
+  flutter_datetime_picker:
+   git:
+      url: https://github.com/randomUserWhoLikesFlutter/flutter_datetime_picker.git
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+  flutter_launcher_icons: "^0.7.5"
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path: "assets/blue.jpg"
+  image_path_android: "assets/blue.jpg"
+  adaptive_icon_background: "assets/unnamed.png"
+  adaptive_icon_foreground: "assets/Daily_Scouter_logo.png"
+
+
+
 flutter:
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/roboto1.ttf
+        - asset: assets/roboto2.ttf
+        - asset: assets/roboto3.ttf
 
   uses-material-design: true
 
   assets:
     - assets/flutter-icon.png
+    - assets/Boy_Scouts_logo.png
+    - assets/Daily_Scouter_logo.png
+    - assets/back-button.png
+    - assets/blue.jpg
+    - assets/squareLogo.png
+    - assets/unnamed.png
+    - assets/roboto3.ttf
+    - assets/roboto1.ttf
+    - assets/roboto2.ttf
+    - assets/OpenSans-Regular.ttf
+    - assets/OpenSans-Bold.ttf
+    - assets/OpenSans-Italic.ttf
+    - assets/OpenSans-BoldItalic.ttf
+    - assets/OpenSans-ExtraBold.ttf
+    - assets/OpenSans-ExtraBoldItalic.ttf
+    - assets/OpenSans-Light.ttf
+    - assets/OpenSans-LightItalic.ttf
+    - assets/OpenSans-Semibold.ttf
+    - assets/OpenSans-SemiboldItalic.ttf
+
+
+
+

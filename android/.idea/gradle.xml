@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.6/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+9/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.5/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_database-3.1.6/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_storage-3.1.6/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/printing-3.5.0/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+5/android" />
-            <option value="$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.0+9/android" />
-            <option value="$PROJECT_DIR$/../../../Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-3.0.7/android" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>
