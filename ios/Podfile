@@ -1,6 +1,9 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
+#target 'Opportunity' do
+ #   use_modular_headers!
 
+#end
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
@@ -75,7 +78,6 @@ target 'Runner' do
   end
 end
 
-platform :ios, '9.0' # set IPHONEOS_DEPLOYMENT_TARGET for the pods project
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
@@ -85,3 +87,5 @@ post_install do |installer|
   end
 end
 
+pod 'DKPhotoGallery', '~> 0.0', :modular_headers => true
+pod 'SDWebImage', '~> 5.9', :modular_headers => true

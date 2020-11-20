@@ -1062,7 +1062,7 @@ ${membersList[j].email}""", _listOfSignedUpPeople[i], membersList[j].isScout, me
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: TextFormField(
-                  enabled: allowedToEdit,
+                  readOnly: !allowedToEdit,
                   controller: additionalNotes,
                   minLines: 1,
                   maxLines: 5,

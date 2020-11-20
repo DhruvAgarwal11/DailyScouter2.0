@@ -219,7 +219,33 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                       labelText: 'Enter the subject (Max 50 Chars)'
                   ),
                 ),
-                TextFormField(
+    Container(
+    padding: new EdgeInsets.all(7.0),
+    child: new ConstrainedBox(
+    constraints: new BoxConstraints(
+    minHeight: 25.0,
+    maxHeight: 200.0,
+    ),
+
+    child: new SingleChildScrollView(
+    scrollDirection: Axis.vertical,
+    reverse: true,
+      child: new TextFormField(
+    keyboardType: TextInputType.multiline,
+    maxLines: null, //grow automatically
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please enter the message';
+        }
+        emailBody = value;
+        return null;
+      },decoration: InputDecoration(
+          labelText: 'Enter your message'
+      ),),
+    ),
+    ),
+    ),
+                /*TextFormField(
                   inputFormatters: [
                     new LengthLimitingTextInputFormatter(1000),
                   ],
@@ -231,7 +257,7 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                     }
 
                     if(value.length>1250){
-                      return 'Please enter a shorter subject (Max 1000 Characters)';
+                      return 'Please enter a shorter message (Max 1000 Characters)';
                     }
                     emailBody = value;
                     return null;
@@ -239,7 +265,7 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                   decoration: InputDecoration(
                       labelText: 'Enter the message (Max 1000 Chars)'
                   ),
-                ),
+                ),*/
                 Center(child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: RaisedButton(
@@ -265,16 +291,21 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                           if (council == membersList[i].council && troop == membersList[i].troop && membersList[i].active && membersList[i].troopApproved)
                           {
                             emailListMaxLen30Members.add(Address(membersList[i].email, (membersList[i].firstName + " " + membersList[i].lastName)));
+                            print(membersList[i].email.toString());
+                            //print(emailListMaxLen30Members[i].mailAddress.toString());
                             if (emailListMaxLen30Members.length >= 30)
                               {
-                                main(emailListMaxLen30Members);
-                                emailListMaxLen30Members.length=0;
+                                print("resetting");
+
+                                //main(emailListMaxLen30Members);
+                                emailListMaxLen30Members = [];
                               }
                           }
                         }
                         if (emailListMaxLen30Members.length > 0)
                         {
-                          main(emailListMaxLen30Members);
+                          print("finished whole loop");
+                          //main(emailListMaxLen30Members);
                         }
                         announcementAdded = true;
                         Navigator.pop(context);

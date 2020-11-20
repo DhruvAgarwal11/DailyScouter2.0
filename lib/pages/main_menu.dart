@@ -653,10 +653,10 @@ class _MenuPageState extends State<MenuPage> {
               if (hasAllInfo && thePersonIsActive) showRosterButton(),
               if ((isAdmin || isScoutmaster) && thePersonIsActive ) showInputMeritBadgeButton(),
               if ((isAdmin || isScoutmaster) && thePersonIsActive) showLeadershipSetupButton(),
+              if (isAdmin || isScoutmaster) showUploadMeritBadgesButton(),
               if (isScoutmaster && thePersonIsActive)showScoutApprovalButton(),
               if (isScoutmaster && thePersonIsActive) showAttendanceChooseButton(),
               if (isScoutmaster && thePersonIsActive) showChooseActiveOrInactiveButton(),
-              if (isAdmin) showUploadMeritBadgesButton(),
               if (isSuperAdmin) showAddTroopButton(),
               if (isSuperAdmin)showAssociateSMButton(),
               showFifthButton()

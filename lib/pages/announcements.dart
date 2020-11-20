@@ -81,6 +81,8 @@ class _AnnouncementsPageState extends State<AnnouncementsPage> {
 
 
   List<AnnouncementsDatabase> listOfAnnouncements = [];
+  List<TextEditingController> listOfNewAnnouncement = [];
+  List<TextEditingController> listOfSubjects = [];
 
 
 
@@ -126,9 +128,13 @@ showComposeMessage=false;
     });
 
     setState(() {
-      if(userId == AnnouncementsDatabase.fromSnapshot(event.snapshot).userId)
+      if(userId == AnnouncementsDatabase.fromSnapshot(event.snapshot).userId) {
         listOfAnnouncements[listOfAnnouncements.indexOf(oldEntry)] = AnnouncementsDatabase.fromSnapshot(event.snapshot);
-    });
+        listOfNewAnnouncement[listOfAnnouncements.indexOf(oldEntry)].text = AnnouncementsDatabase.fromSnapshot(event.snapshot).message;
+        listOfSubjects[listOfAnnouncements.indexOf(oldEntry)].text = AnnouncementsDatabase.fromSnapshot(event.snapshot).subject;
+      }});
+
+
   }
 
   onAnnouncementAdded(Event event) {
@@ -148,6 +154,7 @@ showComposeMessage=false;
       }
       if ((council == values["council"])&& (troop == values["troop"]) && !duplicateEntry && ((DateTime.now().millisecondsSinceEpoch-values["date"])<1296000000)) {
         listOfAnnouncements.add(AnnouncementsDatabase.fromSnapshot(event.snapshot));
+        listOfNewAnnouncement.add(TextEditingController(text: AnnouncementsDatabase.fromSnapshot(event.snapshot).message.toString()));
       }
 
     });
@@ -160,6 +167,7 @@ showComposeMessage=false;
 
     setState(() {
       listOfAnnouncements.removeAt(listOfAnnouncements.indexOf(oldEntry));
+      listOfNewAnnouncement.removeAt(listOfAnnouncements.indexOf(oldEntry));
     });
   }
 
@@ -243,8 +251,71 @@ String eventOrganizer;
 
           if(true){
             final emailKey = GlobalKey<FormState>();
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RichText(
+                    text: TextSpan(
+                      text: date + "   " ,
+                      style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 16),
+                      children: <TextSpan>[
+                        TextSpan(text: listOfAnnouncements[index].subject, style: TextStyle(color: Colors.blue[800], fontWeight: FontWeight.bold, fontSize: 16)),
+                        TextSpan(text: "\nby ", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16)),
 
-            return DataTable (
+                        TextSpan(text: eventOrganizer + "\n", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16)),
+
+                      ],
+                    ),
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    controller: listOfNewAnnouncement[index],
+                    minLines: 1,
+                    maxLines: 20,
+                    validator: (value) =>
+                    (value.isEmpty) ? "Enter An Announcement" : null,
+                    //style: style,
+                    decoration: InputDecoration(
+                        labelText: "Announcement: " + eventOrganizer + " " + listOfAnnouncements[index].subject,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: "\n" ,
+                      style: TextStyle(color: Colors.black, fontSize: 5),
+
+                    ),
+                  ),
+                  if( listOfAnnouncements[index].userId == userId)RaisedButton(
+                    onPressed: () {
+                      for (int zz=0;zz<listOfAnnouncements.length;zz++)
+                        _database.reference().child("AnnouncementsDatabase").child(listOfAnnouncements[index].key).remove();
+                    },
+                    textColor: Colors.white,
+                    color: Colors.blue,
+
+                    child: const Text('Delete Announcement', style: TextStyle(fontSize: 20)),
+                  ),
+                ],
+              ),
+
+//              child: TextFormField(
+//                readOnly: true,
+//                controller: listOfNewAnnouncement[index],
+//                minLines: 1,
+//                maxLines: 20,
+//                validator: (value) =>
+//                (value.isEmpty) ? "Enter An Announcement" : null,
+//                //style: style,
+//                decoration: InputDecoration(
+//                    labelText: "Announcement: " + eventOrganizer + " " + listOfAnnouncements[index].subject,
+//                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+//              ),
+            );
+
+            /*return DataTable (
               headingRowHeight: 20,
               dataRowHeight: 200, // fix this so that it automatically becomes that large
               columnSpacing:0,
@@ -307,25 +378,12 @@ String eventOrganizer;
 
                             child: const Text('Delete Announcement', style: TextStyle(fontSize: 20)),
                           ),
-
                         )
-
                     ),
-
-
-
-
-
                   ],
                 ),
-
-
-
-
-              
               ],
-            );
-
+            );*/
           }
           else{
             return Container();

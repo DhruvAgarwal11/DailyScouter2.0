@@ -32,8 +32,8 @@ android {
         applicationId "org.helloworldcoding.dailyscouter"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 10
-        versionName "1.6.0"
+        versionCode 11
+        versionName "2.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
