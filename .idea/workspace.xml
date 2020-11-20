@@ -9,7 +9,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="updating to 2.0" />
+    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="november 19">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604259590181</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="november 19">
+      <created>1605840390120</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605840390120</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,23 +141,18 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updating to 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating to 2.0" />
+    <MESSAGE value="november 19" />
+    <option name="LAST_COMMIT_MESSAGE" value="november 19" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1604259583286">
+    <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1605840389433">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="997" y="146" key="CommitChangelistDialog2/0.23.1920.981@0.23.1920.981" timestamp="1604259583286" />
-    <state x="548" y="160" key="SettingsEditor" timestamp="1596910611481">
+    <state x="997" y="146" key="CommitChangelistDialog2/0.23.1920.981@0.23.1920.981" timestamp="1605840389433" />
+    <state x="598" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605840396522">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="548" y="160" key="SettingsEditor/0.23.1920.981@0.23.1920.981" timestamp="1596910611481" />
-    <state x="355" y="130" width="1200" height="709" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1596340271600">
-      <screen x="0" y="23" width="1680" height="951" />
-    </state>
-    <state x="355" y="130" width="1200" height="709" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1680.951@0.23.1680.951" timestamp="1596340271600" />
-    <state x="355" y="130" width="1200" height="711" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1680.952@0.23.1680.952" timestamp="1596158149569" />
-    <state x="355" y="130" width="1200" height="711" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1680.954@0.23.1680.954" timestamp="1596236328443" />
+    <state x="598" y="253" key="Vcs.Push.Dialog.v2/0.23.1920.981@0.23.1920.981" timestamp="1605840396522" />
     <state x="882" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604259488470">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
@@ -156,14 +160,10 @@
     <state x="482" y="228" width="1254" height="776" key="find.popup" timestamp="1604902410635">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="95" y="342" width="692" height="486" key="find.popup/0.23.1680.951@0.23.1680.951" timestamp="1596320744849" />
-    <state x="95" y="343" width="692" height="486" key="find.popup/0.23.1680.954@0.23.1680.954" timestamp="1595479640378" />
-    <state x="95" y="344" width="692" height="488" key="find.popup/0.23.1680.956@0.23.1680.956" timestamp="1595565029789" />
     <state x="482" y="228" width="1254" height="776" key="find.popup/0.23.1920.981@0.23.1920.981" timestamp="1604902410635" />
     <state x="1450" y="686" width="766" height="696" key="search.everywhere.popup" timestamp="1603671693891">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="1269" y="668" width="670" height="676" key="search.everywhere.popup/0.23.1680.954@0.23.1680.954" timestamp="1595304227382" />
     <state x="1450" y="686" width="766" height="696" key="search.everywhere.popup/0.23.1920.981@0.23.1920.981" timestamp="1603671693891" />
   </component>
 </project>
