@@ -9,7 +9,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="november 19" />
+    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="nov 19">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +122,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605840390120</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="nov 19">
+      <created>1605840868726</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605840868726</updated>
+    </task>
+    <task id="LOCAL-00004" summary="nov 19">
+      <created>1605841069261</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605841069261</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,17 +156,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updating to 2.0" />
     <MESSAGE value="november 19" />
-    <option name="LAST_COMMIT_MESSAGE" value="november 19" />
+    <MESSAGE value="nov 19" />
+    <option name="LAST_COMMIT_MESSAGE" value="nov 19" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1605840868066">
+    <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1605841069050">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="997" y="146" key="CommitChangelistDialog2/0.23.1920.981@0.23.1920.981" timestamp="1605840868066" />
-    <state x="598" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605840870894">
+    <state x="997" y="146" key="CommitChangelistDialog2/0.23.1920.981@0.23.1920.981" timestamp="1605841069050" />
+    <state x="598" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605841070700">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="598" y="253" key="Vcs.Push.Dialog.v2/0.23.1920.981@0.23.1920.981" timestamp="1605840870894" />
+    <state x="598" y="253" key="Vcs.Push.Dialog.v2/0.23.1920.981@0.23.1920.981" timestamp="1605841070700" />
     <state x="882" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604259488470">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
