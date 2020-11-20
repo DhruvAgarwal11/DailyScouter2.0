@@ -9,21 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="updating to 2.0">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/announcements.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/announcements.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/createAnnouncement.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/createAnnouncement.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/help.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/help.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/login_signup_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/login_signup_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/main_menu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/main_menu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/signup_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/signup_event.dart" afterDir="false" />
-    </list>
+    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="updating to 2.0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
