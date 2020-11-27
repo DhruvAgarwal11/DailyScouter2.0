@@ -34,6 +34,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Dhruv &lt;dhruvagarwal@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -193,10 +198,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1605841634668">
+    <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1606446157098">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="997" y="146" key="CommitChangelistDialog2/0.23.1920.981@0.23.1920.981" timestamp="1605841634668" />
+    <state x="997" y="146" key="CommitChangelistDialog2/0.23.1920.981@0.23.1920.981" timestamp="1606446157098" />
     <state x="598" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605841638530">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
