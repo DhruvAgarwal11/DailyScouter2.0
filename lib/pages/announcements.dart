@@ -166,8 +166,8 @@ showComposeMessage=false;
 
 
     setState(() {
-      listOfAnnouncements.removeAt(listOfAnnouncements.indexOf(oldEntry));
       listOfNewAnnouncement.removeAt(listOfAnnouncements.indexOf(oldEntry));
+      listOfAnnouncements.removeAt(listOfAnnouncements.indexOf(oldEntry));
     });
   }
 

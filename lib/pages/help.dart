@@ -45,7 +45,7 @@ class HelpPage extends StatelessWidget {
                 ]
             )
         ),
-            Text("\n\nv2.0 of the app introduces some key enhancements: \n\n1. Ability to sync merit badge and rank data from ScoutBook.\n\n2. Support for Cub Scout Ranks to enable better user experience for Cub Scout packs.\n\n3. Introduction of \"Board of Review\" for scheduling/registering to ease parent sign-ups for these events."),
+            Text("\n\nv2.1 of the app introduces some key enhancements: \n\n1. Ability to sync merit badge and rank data from ScoutBook.\n\n2. Support for Cub Scout Ranks to enable better user experience for Cub Scout packs.\n\n3. Introduction of \"Board of Review\" for scheduling/registering to ease parent sign-ups for these events."),
 
           ],
         ),

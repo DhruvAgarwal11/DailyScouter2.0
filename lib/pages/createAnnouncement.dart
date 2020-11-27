@@ -48,6 +48,7 @@ List<int> validIndex = new List();
 var checkboxClickedIsTrue = new List (2000);
 List<TextEditingController> lastNameController = new List(2000);
 List<TextEditingController> firstNameController = new List(2000);
+var emailListForDebug = ["rajata@gmail.com","dhruvagarwal@gmail.com","akhilagarwal79@gmail.com","chhaviag@gmail.com","rajata@gmail.com","rajata@gmail.com","rajata@gmail.com","rajata@gmail.com","rajat.a@gmail.com","d.hruvagarwal@gmail.com","dh.ruvagarwal@gmail.com","dhr.uvagarwal@gmail.com","dhru.vagarwal@gmail.com","dhruv.agarwal@gmail.com","dhruva.garwal@gmail.com","dhruvag.arwal@gmail.com","dhruvaga.rwal@gmail.com","dhruvagar.wal@gmail.com","dhruvagarw.al@gmail.com","dhruvagarwa.l@gmail.com","dhruvagarwal@gmail.com","akhilagarwal79@gmail.com","a.khilagarwal79@gmail.com","ak.hilagarwal79@gmail.com","akh.ilagarwal79@gmail.com","akhi.lagarwal79@gmail.com","akhil.agarwal79@gmail.com","akhila.garwal79@gmail.com","akhilag.arwal79@gmail.com","akhilaga.rwal79@gmail.com","akhilagar.wal79@gmail.com","akhilagarw.al79@gmail.com","akhilagarwa.l79@gmail.com","akhilagarwal.79@gmail.com","akhilagarwal7.9@gmail.com"];
 
 
 
@@ -79,15 +80,9 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
   final List<MeritBadges> meritBadgesList;
   final List<Merit_Badges_Earned> meritBadgesEarnedList;
   final List<EventModel> listOfEvents;
-
-
   List<AnnouncementsDatabase> listOfAnnouncements = [];
-
-
-
   List<EventSignUp> _listOfSignedUpEvents = [];
   List<EventModel> _listOfGoodEvents = [];
-
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -168,7 +163,7 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
 
 
 
-  Widget findAnnouncement() {
+  Widget findAnnouncement()  {
 
     validIndex.length = 0;
 
@@ -280,35 +275,13 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                             emailOfPerson =membersList[i].email;
                           }
                         }
-                        AnnouncementsDatabase event = new AnnouncementsDatabase(userId, council, troop, DateTime.now().millisecondsSinceEpoch, subject,emailBody, false);
-                        _database.reference().child("AnnouncementsDatabase").push().set(event.toJson());
-                        subjectFromDatabase=event.message;
+                        showAlertDialog(context, "Are you sure?");
 
                         // Send email in at max batches of 30 addresses
-                        List<Address> emailListMaxLen30Members = [];
-                        emailListMaxLen30Members.length=0;
-                        for (int i = 0; i<membersList.length; i++){
-                          if (council == membersList[i].council && troop == membersList[i].troop && membersList[i].active && membersList[i].troopApproved)
-                          {
-                            emailListMaxLen30Members.add(Address(membersList[i].email, (membersList[i].firstName + " " + membersList[i].lastName)));
-                            print(membersList[i].email.toString());
-                            //print(emailListMaxLen30Members[i].mailAddress.toString());
-                            if (emailListMaxLen30Members.length >= 30)
-                              {
-                                print("resetting");
+                        //sendEmailInBatches(25);
 
-                                //main(emailListMaxLen30Members);
-                                emailListMaxLen30Members = [];
-                              }
-                          }
-                        }
-                        if (emailListMaxLen30Members.length > 0)
-                        {
-                          print("finished whole loop");
-                          //main(emailListMaxLen30Members);
-                        }
-                        announcementAdded = true;
-                        Navigator.pop(context);
+                       //announcementAdded = true;
+                        //Navigator.pop(context);
                       }
                     },
                     child: Text('Submit'),
@@ -324,6 +297,75 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
           );
 
 
+  }
+
+  sendEmailInBatches(int countPerBatch) async {
+
+    AnnouncementsDatabase event = new AnnouncementsDatabase(userId, council, troop, DateTime.now().millisecondsSinceEpoch, subject,emailBody, false);
+    _database.reference().child("AnnouncementsDatabase").push().set(event.toJson());
+    subjectFromDatabase=event.message;
+
+    // Send email in at max batches of 30 addresses
+    List<Address> emailListMaxLen30Members = [];
+    emailListMaxLen30Members.length=0;
+    for (int i = 0; i<membersList.length; i++){
+      if (council == membersList[i].council && troop == membersList[i].troop && membersList[i].active && membersList[i].troopApproved)
+      {
+        emailListMaxLen30Members.add(Address(membersList[i].email, (membersList[i].firstName + " " + membersList[i].lastName)));
+        //emailListMaxLen30Members.add(Address(emailListForDebug[i%countPerBatch].toString(), (membersList[i].firstName + " " + membersList[i].lastName)));
+        //print(membersList[i].email.toString() + " " + emailListForDebug[i%countPerBatch].toString());
+        //print(emailListMaxLen30Members[i].mailAddress.toString());
+        if (emailListMaxLen30Members.length >= countPerBatch)
+        {
+          print("resetting");
+
+          await main(emailListMaxLen30Members);
+          emailListMaxLen30Members = [];
+        }
+      }
+    }
+    if (emailListMaxLen30Members.length > 0)
+    {
+      print("finished whole loop");
+      await main(emailListMaxLen30Members);
+    }
+    announcementAdded = true;
+    //Navigator.pop(context);
+
+  }
+
+  showAlertDialog(BuildContext context, String displayString) {
+    // set up the button
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget okButton = FlatButton(
+      child: Text("Yes"),
+      onPressed: () {
+        Navigator.pop(context);
+        Navigator.pop(context);
+        sendEmailInBatches(25);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Are you sure?"),
+      content: Text("This will send an email to troop members."),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -357,10 +399,11 @@ main(List<Address> emailListMaxLen30Members) async {
 
   try {
     final sendReport = await send(message, smtpServer);
-    print(sendReport.toString());
+    print("Done with one send loop "+ sendReport.toString());
   } on MailerException catch (e) {
     for (var p in e.problems) {
       print('Problem: ${p.code}: ${p.msg}');
     }
   }
 }
+

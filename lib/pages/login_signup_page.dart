@@ -286,7 +286,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget showHelpButton() {
     return new FlatButton(
         child: new Text(
-            'Help (ver. 2.0)',
+            'Help (ver. 2.1)',
             style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
         onPressed: showHelpPage);
   }

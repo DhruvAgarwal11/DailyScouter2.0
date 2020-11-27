@@ -9,7 +9,15 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="nov 19" />
+    <list default="true" id="9c304e8f-8b51-4d03-af7a-d0fd71e71afd" name="Default" comment="First commit">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/announcements.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/announcements.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/createAnnouncement.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/createAnnouncement.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/help.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/help.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/login_signup_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/login_signup_page.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +34,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
@@ -148,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605841266022</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="First commit">
+      <created>1605841634799</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605841634799</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,7 +189,8 @@
     <MESSAGE value="updating to 2.0" />
     <MESSAGE value="november 19" />
     <MESSAGE value="nov 19" />
-    <option name="LAST_COMMIT_MESSAGE" value="nov 19" />
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="997" y="146" key="CommitChangelistDialog2" timestamp="1605841634668">
@@ -180,14 +201,14 @@
       <screen x="0" y="23" width="1920" height="981" />
     </state>
     <state x="598" y="253" key="Vcs.Push.Dialog.v2/0.23.1920.981@0.23.1920.981" timestamp="1605841638530" />
-    <state x="882" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604259488470">
+    <state x="882" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606446117123">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="882" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.981@0.23.1920.981" timestamp="1604259488470" />
-    <state x="482" y="228" width="1254" height="776" key="find.popup" timestamp="1604902410635">
+    <state x="882" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.981@0.23.1920.981" timestamp="1606446117123" />
+    <state x="319" y="126" width="1254" height="776" key="find.popup" timestamp="1606446044299">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
-    <state x="482" y="228" width="1254" height="776" key="find.popup/0.23.1920.981@0.23.1920.981" timestamp="1604902410635" />
+    <state x="319" y="126" width="1254" height="776" key="find.popup/0.23.1920.981@0.23.1920.981" timestamp="1606446044299" />
     <state x="1450" y="686" width="766" height="696" key="search.everywhere.popup" timestamp="1603671693891">
       <screen x="0" y="23" width="1920" height="981" />
     </state>
