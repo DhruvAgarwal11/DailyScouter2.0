@@ -1,15 +1,14 @@
-# flutter_login_demo
+# Daily Scouter
 
-A sample Flutter project to show case user login and signup process with Firebase authentication. 
-It also shows how to perform CRUD operations with Firebase Real Time Database using simple todo list application.
+This is an app that can be used by Scouts and parents in Scout Troops and Packs for:
 
-## Medium
-Do spend sometime to read the article to complement the source code:
+- scheduling and signing up for the events of the troop (including tracking camping nights and service hours)
 
-https://medium.com/flutterpub/flutter-how-to-do-user-login-with-firebase-a6af760b14d5
-https://medium.com/@tattwei46/flutter-how-to-do-crud-with-firebase-rtdb-ce61e3ce53a
+- tracking their ranks, merit badges, attendance, and progress
 
-## Getting Started
+- making announcements to their troop
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+- keeping themselves organized as they move towards the rank of Eagle Scout!
+
+
+To learn more and see the app in action, please visit: https://DailyScouter.com
